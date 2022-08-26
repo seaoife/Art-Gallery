@@ -1,0 +1,100 @@
+﻿@model IEnumerable<CA2ArtGallery1.Models.Painting>
+@{ViewData["Title"] = "Painting";
+
+}
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!Doctype html>
+<html>
+<head>
+
+    <link href="@Url.Content("~/css/Gallery.css")" rel="stylesheet" type="text/css" />
+
+    <style>
+        .navbar-brand {
+            color: white !important;
+        }
+
+        .navbar {
+            background-color: #7437d3 !important;
+        }
+
+        .nav-link {
+            color: #fff !important;
+        }
+    </style>
+</head>
+<body>
+    <h1> Welcome to our Painting</h1><br><br>
+    <div>
+        <p> @ViewBag.Message @User.Identity.Name enjoy your Tour.</p>
+    </div>
+    <div>
+        <a asp-controller="Painting" asp-action="Index" asp-route-id="0">
+            <p>View all Paintings</p>
+        </a>
+        @if (SignInManager.IsSignedIn(User) && User.IsInRole("artist"))
+        {
+            <a asp-controller="Painting" asp-action="Create">
+                <p>Create Paintings</p>
+            </a>
+        }
+        </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Desc</th>
+                <th>Artist name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CA2ArtGallery1.Models.Painting item in Model)
+            {
+                <tr>
+                    <td>
+                        <p>@item.Title</p>
+                    </td>
+                    <td>
+                        <img src="~/images/@item.Image" alt="@item.AlternateText" width="100" height="100" />
+                    </td>
+                    <td>
+                        <p>@item.Description</p>
+                    </td>
+                    <td>
+                        <p>@item.Artist.FirstName @item.Artist.SurName</p>
+                        <p>@item.Style.StyleName</p>
+                    </td>
+                    <td>
+                        <a asp-action="Detail" asp-route-id="@item.Id">Details</a> 
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("artist"))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> 
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        }
+
+                    </td>
+                </tr>
+            }
+
+
+
+    </table>
+    @*<ul>
+            @foreach (var item in Model)
+            {
+
+                <li class="galleryContainer">
+                    <img class="productlist" src="@Url.Content(item.thisPainting.Image)" alt="@item.thisPainting.AlternateText" />
+                    <span class="caption">@item.thisPainting.Title</span>
+                    <span class="caption">@item.thisArtist.FirstName @item.thisArtist.SurName </span>
+                    <span class="caption">@item.thisPainting.Description</span>
+                </li>
+            }
+
+        </ul>*@
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿body {
+}
+.galleryContainer {
+    float: left;
+    list-style-type: none;
+    width: 45%;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+}
+
+.productlist {
+    display: block;
+}
+
+.caption {
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+/*a{
+    text-decoration:none;
+    color:red;
+    font-size:15px;
+    border:2px solid black;
+    border-radius:20px;
+    margin-top:10px;
+    transition:0.5s;
+}*/
+/*a:hover{
+    -webkit-text-stroke:2px #fff;
+    color:transparent;
+}
+*/

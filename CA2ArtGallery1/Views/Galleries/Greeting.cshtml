@@ -1,0 +1,49 @@
+﻿@model IEnumerable<CA2ArtGallery1.ViewModels.PaintingArtistViewModel>
+@{ViewData["Title"] = "Gallery";
+
+}
+<!Doctype html>
+<html>
+<head>
+
+    <link href="@Url.Content("~/css/Gallery.css")" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <h1> Welcome to our gallery</h1><br><br>
+
+
+    <div>
+        @ViewBag.Message  enjoy your Tour.<br><br>
+    </div>
+    <table>
+        @foreach (CA2ArtGallery1.ViewModels.PaintingArtistViewModel item in Model)
+        {
+         <tr>
+
+             <td>src="@Url.Content(item.thisPainting.Image)" alt="@item.thisPainting.AlternateText" /></td>
+            <td>@item.thisPainting.Title</td>
+            <td>@item.thisArtist.FirstName @item.thisArtist.SurName</td>
+            <td>@item.thisPainting.Description</td>
+           </tr>
+        }
+
+
+
+    </table>
+        @*<ul>
+            @foreach (var item in Model)
+            {
+
+                <li class="galleryContainer">
+                    <img class="productlist" src="@Url.Content(item.thisPainting.Image)" alt="@item.thisPainting.AlternateText" />
+                    <span class="caption">@item.thisPainting.Title</span>
+                    <span class="caption">@item.thisArtist.FirstName @item.thisArtist.SurName </span>
+                    <span class="caption">@item.thisPainting.Description</span>
+                </li>
+            }
+
+        </ul>*@
+    
+</body>
+</html>
